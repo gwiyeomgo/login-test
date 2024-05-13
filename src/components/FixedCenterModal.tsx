@@ -45,6 +45,7 @@ const FixedCenterModal = forwardRef(function FixedCenterModal(
             <div
                 className="modal"
                 style={{
+                    backgroundColor:'white',
                     background: 'rgba(0, 0, 0, 0.25)',
                     position: "fixed",
                     left: 0,

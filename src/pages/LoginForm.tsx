@@ -1,10 +1,28 @@
-
+import styled from '@emotion/styled';
 import {FormEvent} from "react";
 import { http } from '../utils/http';
 import axios from "axios";
+import {useInternalRouter} from "../hooks/useInternalRouter";
 interface Props{
-
+    onClose : ()=>void
 }
+
+const Form = styled.form`
+ display:'flex';
+ flex-direction: "column";
+`;
+
+const Label = styled.label`
+ width:100%;
+`;
+
+const Input = styled.input`
+    width:100%
+`;
+
+const LoginButton = styled.button`
+  width:100%
+`
 
 export interface LoginRequestBody {
     id: string;
@@ -15,6 +33,7 @@ export interface AuthResponse {
     // 다른 프로퍼티들도 정의할 수 있음
 }
 function LoginForm(props: Props){
+    const router = useInternalRouter();
 
     async function Login(requestBody: LoginRequestBody) {
         const authResponse = await http.post<AuthResponse>('/auth', requestBody);
@@ -23,7 +42,7 @@ function LoginForm(props: Props){
         //토큰으로 회원 조회
         const memberResponse = await http.get("/my");
             console.log(memberResponse)
-
+        router.push('/boards')
     }
 
     function logout() {
@@ -54,16 +73,19 @@ function LoginForm(props: Props){
         const id = formData.get('id') as string; // Get id from form data
         const password = formData.get('psw') as string; // Get password from form data
 
-        Login({id,password})
+        Login({id,password}).then(()=>{
+            console.log(id, password); // Log username and password
+            props.onClose()
+        })
 
-        console.log(id, password); // Log username and password
     }
-    return <form onSubmit={onFinish}>
-        <label htmlFor="id"><b>Username</b></label>
-        <input type="text" placeholder="Enter Username" name="id" required/>
-        <label htmlFor="psw"><b>Password</b></label>
-        <input type="password" placeholder="Enter Password" name="psw" required/>
-        <button type="submit">Login</button>
-    </form>
+
+    return <Form onSubmit={onFinish}>
+        <Label htmlFor="id"><b>Username</b></Label>
+        <Input type="text" placeholder="Enter Username" name="id" required/>
+        <Label htmlFor="psw"><b>Password</b></Label>
+        <Input type="password" placeholder="Enter Password" name="psw" required/>
+        <LoginButton type="submit">로그인</LoginButton>
+    </Form>
 }
 export default LoginForm
