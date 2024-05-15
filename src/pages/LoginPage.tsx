@@ -22,7 +22,10 @@ function LoginPage() {
     };
 
     return<ButtonList>
-        <FixedCenterModal isOpen={isOpen} onClick={closeModal}>
+        <FixedCenterModal
+                isOpen={isOpen}
+                onClick={closeModal}
+                modalStyle={{ border: "1px solid #bcbcbc",padding: "0px 10px 10px"}} >
             <LoginForm onClose={closeModal}/>
         </FixedCenterModal>
         <SocialKakao/>

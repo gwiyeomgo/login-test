@@ -1,4 +1,4 @@
-import {ComponentPropsWithoutRef, forwardRef, ReactNode, Ref, useEffect, useRef} from "react";
+import {ComponentPropsWithoutRef, CSSProperties, forwardRef, ReactNode, Ref, useEffect, useRef} from "react";
 import Button from "./Button";
 import {GlobalPortal} from "../GlobalPortal";
 import FocusTrap from "focus-trap-react";
@@ -19,7 +19,8 @@ import FocusTrap from "focus-trap-react";
 
 type ModalProps = {
     isOpen ?: boolean,
-    children ?: ReactNode
+    children ?: ReactNode,
+    modalStyle ?: CSSProperties,
 };
 const FixedCenterModal = forwardRef(function FixedCenterModal(
     props: ComponentPropsWithoutRef<typeof Button> & ModalProps,  //https://www.pumpkiinbell.com/blog/react/reusable-components
@@ -32,6 +33,7 @@ const FixedCenterModal = forwardRef(function FixedCenterModal(
         top: -${window.scrollY}px;
         overflow-y: scroll;
         width: 100%;`;
+
         return () => {
             const scrollY = document.body.style.top;
             document.body.style.cssText = '';
@@ -45,8 +47,8 @@ const FixedCenterModal = forwardRef(function FixedCenterModal(
             <div
                 className="modal"
                 style={{
+                    ...props.modalStyle,
                     backgroundColor:'white',
-                    background: 'rgba(0, 0, 0, 0.25)',
                     position: "fixed",
                     left: 0,
                     right: 0,
@@ -59,7 +61,7 @@ const FixedCenterModal = forwardRef(function FixedCenterModal(
             >
                 {props.children}
                 <Button {...props} onClick={props.onClick}  data-testid="mcb">
-                    확인
+                    취소
                 </Button>
             </div>
             </FocusTrap>

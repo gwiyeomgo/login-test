@@ -19,12 +19,8 @@ class APIError extends Error {
  * API
  * 각 API는 HTTP handler로 정의되어 있어요. 아래의 handlers와 관련 주석을 확인해주세요.
  */
-const todos = ["먹기", "자기", "놀기"];
 export function handlers() {
   return [
-    rest.get("/todos", (req, res, ctx) => {
-      return res(ctx.status(200), ctx.json(todos));
-    }),
     rest.get('/api/list', getList),
     rest.post('/auth', auth),
     rest.get('/my', getMember),
