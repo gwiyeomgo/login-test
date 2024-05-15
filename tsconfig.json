@@ -1,6 +1,8 @@
 {
   "compilerOptions": {
-    "baseUrl": "src",
+    "rootDir": "./src",
+    "outDir": "./build",
+    "baseUrl": "./src",
     "target": "es5",
     "lib": [
       "dom",
@@ -18,12 +20,13 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "noEmit": true,
+    "noEmit": false, //TypeScript 컴파일러가 출력
     "jsx": "react-jsx",
-    "jsxImportSource": "@emotion/react"
+    "jsxImportSource": "@emotion/react",
+
   },
   "include": [
-    "**/*.ts",
-    "**/*.tsx"
-  ]
+    "src/**/*.tsx", "src/**/*.ts"
+  ],
+  "exclude": ["node_modules"]
 }
