@@ -1,4 +1,3 @@
-import { jsx as _jsx } from "@emotion/react/jsx-runtime";
 import { BigImageButton } from "./BigImageButton";
 const REST_API_KEY = 'test';
 const REDIRECT_URI = 'http://localhost:7000/auth';
@@ -8,6 +7,6 @@ function SocialKakao() {
     const handleLogin = () => {
         window.location.href = kakaoURL;
     };
-    return (_jsx(BigImageButton, { backgroundColor: "#FEE500", url: "./kakao_login_medium_narrow.png", onClick: handleLogin }));
+    return (React.createElement(BigImageButton, { backgroundColor: "#FEE500", url: "./kakao_login_medium_narrow.png", onClick: handleLogin }));
 }
 export default SocialKakao;

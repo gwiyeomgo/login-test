@@ -1,4 +1,4 @@
-import { jsx as _jsx } from "@emotion/react/jsx-runtime";
+import React from "react";
 import axios from "axios";
 import { Navigate, useLocation } from "react-router-dom";
 import qs from "qs";
@@ -9,12 +9,12 @@ const OAuthLoginResult = () => {
         ignoreQueryPrefix: true
     });
     if (query.error) {
-        return _jsx(Navigate, { replace: true, to: "/" });
+        return React.createElement(Navigate, { replace: true, to: "/" });
     }
     else if (typeof query.returnUrl === 'string') {
         debugger;
         axios.defaults.headers['Authorization'] = `Bearer ${query.accessToken}`;
-        return _jsx(Navigate, { replace: true, to: query.returnUrl });
+        return React.createElement(Navigate, { replace: true, to: query.returnUrl });
     }
     return null;
 };

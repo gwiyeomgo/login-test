@@ -1,10 +1,9 @@
-import { jsx as _jsx } from "@emotion/react/jsx-runtime";
 import LoginPage from "../pages/LoginPage";
 import { wrapper } from "./utils/renderUI";
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 const setup = () => {
-    return render(_jsx(LoginPage, {}), { wrapper: props => wrapper(props, { route: '/' }) });
+    return render(React.createElement(LoginPage, null), { wrapper: props => wrapper(props, { route: '/' }) });
 };
 test('보기 버튼을 선택하면 모달이 화면에 보인다.', async () => {
     setup();

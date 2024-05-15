@@ -1,4 +1,3 @@
-import { jsx as _jsx } from "@emotion/react/jsx-runtime";
 import styled from '@emotion/styled';
 const Container = styled.div `
  margin: 15px;
@@ -15,5 +14,6 @@ background-color: ${({ backgroundColor }) => (backgroundColor !== "" ? backgroun
 
 `;
 export const BigImageButton = ({ backgroundColor, url, onClick }) => {
-    return _jsx(Container, { backgroundColor: backgroundColor, children: _jsx(Image, { backgroundColor: backgroundColor, url: url, onClick: onClick }) });
+    return React.createElement(Container, { backgroundColor: backgroundColor },
+        React.createElement(Image, { backgroundColor: backgroundColor, url: url, onClick: onClick }));
 };

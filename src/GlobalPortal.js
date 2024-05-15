@@ -1,4 +1,3 @@
-import { jsx as _jsx, jsxs as _jsxs } from "@emotion/react/jsx-runtime";
 import { createContext, useState } from 'react';
 import { createPortal } from 'react-dom';
 /***
@@ -16,20 +15,22 @@ function PortalProvider({ children }) {
     const [portalContainerRef, setPortalContainerRef] = useState(null);
     // 이 요소는 <div id="portal-container">로 표시되며,
     // 자식 요소들을 렌더링하기 위한 포털 컨테이너 역할
-    return (_jsxs(PortalContext.Provider, { value: portalContainerRef, children: [children, _jsx("div", { id: "portal-container", ref: elem => {
-                    if (portalContainerRef !== null || elem === null) {
-                        return;
-                    }
-                    setPortalContainerRef(elem);
-                } })] }));
+    return (React.createElement(PortalContext.Provider, { value: portalContainerRef },
+        children,
+        React.createElement("div", { id: "portal-container", ref: elem => {
+                if (portalContainerRef !== null || elem === null) {
+                    return;
+                }
+                setPortalContainerRef(elem);
+            } })));
 }
 function PortalConsumer({ children }) {
-    return (_jsx(PortalContext.Consumer, { children: portalContainerRef => {
-            if (portalContainerRef === null) {
-                return null;
-            }
-            return createPortal(children, portalContainerRef);
-        } }));
+    return (React.createElement(PortalContext.Consumer, null, portalContainerRef => {
+        if (portalContainerRef === null) {
+            return null;
+        }
+        return createPortal(children, portalContainerRef);
+    }));
 }
 //https://ko.legacy.reactjs.org/docs/portals.html
 export const GlobalPortal = {

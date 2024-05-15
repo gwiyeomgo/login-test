@@ -1,4 +1,4 @@
-import { jsx as _jsx } from "@emotion/react/jsx-runtime";
+import React from "react";
 import { BigImageButton } from "./BigImageButton";
 function GoogleWorkspace({ clientId, redirectUri }) {
     const handleGoogleLoginClick = () => {
@@ -8,6 +8,6 @@ function GoogleWorkspace({ clientId, redirectUri }) {
         const googleOAuthRedirectLoginUrl = window.location.origin + "/oauth-login-result" + "?returnUrl=" + returnUrl;
         window.location.href = oauthUri + `?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=code&scope=https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email&approval_prompt=force&access_type=offline` + "&state=" + encodeURIComponent(googleOAuthRedirectLoginUrl);
     };
-    return (_jsx(BigImageButton, { url: "./google-workspace.png", onClick: handleGoogleLoginClick }));
+    return (React.createElement(BigImageButton, { url: "./google-workspace.png", onClick: handleGoogleLoginClick }));
 }
 export default GoogleWorkspace;

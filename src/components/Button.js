@@ -1,10 +1,9 @@
-import { jsx as _jsx } from "@emotion/react/jsx-runtime";
 import { forwardRef, useId } from 'react';
 import { css } from "@emotion/react";
 const Button = forwardRef(function Button(props, forwardedRef) {
     const { fullWidth = true, children, ...rest } = props;
     const buttonId = useId();
-    return (_jsx("button", { ref: forwardedRef, id: buttonId, css: css `
+    return (React.createElement("button", { ref: forwardedRef, id: buttonId, css: css `
         display: inline-flex;
         align-items: center;
         justify-content: center;
@@ -30,6 +29,7 @@ const Button = forwardRef(function Button(props, forwardedRef) {
         &:active {
           background-color:#1b64da;
         }
-      `, ...rest, children: _jsx("span", { children: children }) }));
+      `, ...rest },
+        React.createElement("span", null, children)));
 });
 export default Button;

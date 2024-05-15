@@ -29,7 +29,8 @@
     "web-vitals": "^2.1.0"
   },
   "scripts": {
-    "build": "tsc",
+    "build": "yarn clean && tsc",
+    "clean": "npx rimraf build",
     "start": "react-app-rewired start",
     "test": "jest",
     "lint": "eslint -c .eslintrc.js '{pages,src}/**/*.{js,jsx,ts,tsx}'",

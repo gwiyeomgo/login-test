@@ -1,4 +1,3 @@
-import { jsx as _jsx, jsxs as _jsxs, Fragment as _Fragment } from "@emotion/react/jsx-runtime";
 import { forwardRef, useEffect } from "react";
 import Button from "./Button";
 import { GlobalPortal } from "../GlobalPortal";
@@ -17,7 +16,9 @@ const FixedCenterModal = forwardRef(function FixedCenterModal(props) {
             window.scrollTo(0, parseInt(scrollY || '0', 10) * -1);
         };
     }, []);
-    return (props.isOpen ? _jsx(GlobalPortal.Consumer, { children: _jsx(FocusTrap, { active: props.isOpen, children: _jsxs("div", { className: "modal", style: {
+    return (props.isOpen ? React.createElement(GlobalPortal.Consumer, null,
+        React.createElement(FocusTrap, { active: props.isOpen },
+            React.createElement("div", { className: "modal", style: {
                     ...props.modalStyle,
                     backgroundColor: 'white',
                     position: "fixed",
@@ -28,6 +29,8 @@ const FixedCenterModal = forwardRef(function FixedCenterModal(props) {
                     margin: "auto",
                     width: "fit-content",
                     height: "fit-content",
-                }, children: [props.children, _jsx(Button, { ...props, onClick: props.onClick, "data-testid": "mcb", children: "\uCDE8\uC18C" })] }) }) }) : _jsx(_Fragment, {}));
+                } },
+                props.children,
+                React.createElement(Button, { ...props, onClick: props.onClick, "data-testid": "mcb" }, "\uCDE8\uC18C")))) : React.createElement(React.Fragment, null));
 });
 export default FixedCenterModal;

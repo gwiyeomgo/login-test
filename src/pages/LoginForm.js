@@ -1,4 +1,3 @@
-import { jsx as _jsx, jsxs as _jsxs } from "@emotion/react/jsx-runtime";
 import styled from '@emotion/styled';
 import { http } from '../utils/http';
 import axios from "axios";
@@ -61,6 +60,14 @@ function LoginForm(props) {
             props.onClose();
         });
     };
-    return _jsx(Form, { onSubmit: onFinish, children: _jsxs("div", { children: [_jsx(Label, { htmlFor: "id", children: _jsx("b", { children: "ID" }) }), _jsx(Input, { type: "text", placeholder: "ID \uB97C \uC785\uB825\uD558\uC138\uC694.", name: "id", required: true }), _jsx(Label, { htmlFor: "psw", children: _jsx("b", { children: "Password" }) }), _jsx(Input, { type: "password", placeholder: "Password\uB97C \uC785\uB825\uD558\uC138\uC694", name: "psw", required: true }), _jsx(Button, { type: "submit", children: "\uD655\uC778" })] }) });
+    return React.createElement(Form, { onSubmit: onFinish },
+        React.createElement("div", null,
+            React.createElement(Label, { htmlFor: "id" },
+                React.createElement("b", null, "ID")),
+            React.createElement(Input, { type: "text", placeholder: "ID \uB97C \uC785\uB825\uD558\uC138\uC694.", name: "id", required: true }),
+            React.createElement(Label, { htmlFor: "psw" },
+                React.createElement("b", null, "Password")),
+            React.createElement(Input, { type: "password", placeholder: "Password\uB97C \uC785\uB825\uD558\uC138\uC694", name: "psw", required: true }),
+            React.createElement(Button, { type: "submit" }, "\uD655\uC778")));
 }
 export default LoginForm;
