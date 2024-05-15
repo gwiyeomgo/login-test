@@ -29,6 +29,7 @@
     "web-vitals": "^2.1.0"
   },
   "scripts": {
+    "build": "tsc",
     "start": "react-app-rewired start",
     "test": "jest",
     "lint": "eslint -c .eslintrc.js '{pages,src}/**/*.{js,jsx,ts,tsx}'",
@@ -56,6 +57,7 @@
     "workerDirectory": "public"
   },
   "devDependencies": {
+    "@babel/preset-typescript": "^7.24.1",
     "headers-polyfill": "^3.2.5"
   }
 }
