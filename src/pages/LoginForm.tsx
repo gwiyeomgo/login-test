@@ -3,6 +3,7 @@ import {FormEvent} from "react";
 import { http } from '../utils/http';
 import axios from "axios";
 import {useInternalRouter} from "../hooks/useInternalRouter";
+import Button from "../components/Button";
 interface Props{
     onClose : ()=>void
 }
@@ -10,19 +11,24 @@ interface Props{
 const Form = styled.form`
  display:'flex';
  flex-direction: "column";
+ margin-bottom: 10px;
+  margin-top: 20px;
 `;
 
 const Label = styled.label`
  width:100%;
+ font-size: 17px;
 `;
 
 const Input = styled.input`
-    width:100%
+    width:95%;
+    border: 1px solid #bcbcbc;
+    padding:10px;   
+    border-radius: 10px;
+    margin-bottom:10px;
+    margin-top:10px;
 `;
 
-const LoginButton = styled.button`
-  width:100%
-`
 
 export interface LoginRequestBody {
     id: string;
@@ -81,11 +87,13 @@ function LoginForm(props: Props){
     }
 
     return <Form onSubmit={onFinish}>
-        <Label htmlFor="id"><b>Username</b></Label>
-        <Input type="text" placeholder="Enter Username" name="id" required/>
-        <Label htmlFor="psw"><b>Password</b></Label>
-        <Input type="password" placeholder="Enter Password" name="psw" required/>
-        <LoginButton type="submit">로그인</LoginButton>
+        <div>
+            <Label htmlFor="id"><b>ID</b></Label>
+            <Input type="text" placeholder="ID 를 입력하세요." name="id" required/>
+            <Label htmlFor="psw"><b>Password</b></Label>
+            <Input type="password" placeholder="Password를 입력하세요" name="psw" required/>
+            <Button type="submit">확인</Button>
+        </div>
     </Form>
 }
 export default LoginForm
