@@ -1,4 +1,4 @@
-import { ReactNode, createContext, useState } from 'react';
+import React, { ReactNode, createContext, useState } from 'react';
 import { createPortal } from 'react-dom';
 
 /***
@@ -12,7 +12,7 @@ import { createPortal } from 'react-dom';
 const PortalContext = createContext<HTMLDivElement | null>(null);
 
 interface PortalProviderProps {
-  children: ReactNode;
+  children: React.ReactNode;
 }
 
 function PortalProvider({ children }: PortalProviderProps) {

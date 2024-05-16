@@ -7,14 +7,14 @@ import {useInternalRouter} from "../hooks/useInternalRouter";
 import colors from "../constants/colors";
 
 
-interface Props {
+interface ListProps {
     className?: string;
 }
 /*
 * >는 직계 자식
 * :not(:first-of-type)은 첫 번째 자식을 제외한 나머지 요소
 * */
-export function List({ className, children }: PropsWithChildren<Props>) {
+export function List({ className, children }: PropsWithChildren<ListProps>) {
     return (
         <ul
             className={className}

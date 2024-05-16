@@ -2,6 +2,8 @@ import {ComponentPropsWithoutRef, CSSProperties, forwardRef, ReactNode, Ref, use
 import Button from "./Button";
 import {GlobalPortal} from "../GlobalPortal";
 import FocusTrap from "focus-trap-react";
+
+
 /***
 1. //https://xionwcfm.tistory.com/316#%F0%9F%A4%A1%EB%AA%A8%EB%8B%AC%20%EB%A7%8C%EB%93%A4%EC%96%B4%EB%B3%B4%EA%B8%B0-1
 2.Property 'css' does not exist on type 'DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>'
@@ -43,7 +45,7 @@ const FixedCenterModal = forwardRef(function FixedCenterModal(
 
     return (
         props.isOpen ? <GlobalPortal.Consumer>
-            <FocusTrap  active={props.isOpen}>
+        {/*    <FocusTrap  active={props.isOpen}>*/}
             <div
                 className="modal"
                 style={{
@@ -64,7 +66,7 @@ const FixedCenterModal = forwardRef(function FixedCenterModal(
                     취소
                 </Button>
             </div>
-            </FocusTrap>
+           {/* </FocusTrap>*/}
         </GlobalPortal.Consumer> :<></>
     );
 })

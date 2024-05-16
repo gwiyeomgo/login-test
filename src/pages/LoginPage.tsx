@@ -22,18 +22,19 @@ function LoginPage() {
     };
 
     return<ButtonList>
-        <FixedCenterModal
-                isOpen={isOpen}
-                onClick={closeModal}
-                modalStyle={{ border: "1px solid #bcbcbc",padding: "0px 10px 10px"}} >
-            <LoginForm onClose={closeModal}/>
-        </FixedCenterModal>
         <SocialKakao/>
         <GoogleWorkspace
             clientId={"test.test.apps.googleusercontent.com"}
             redirectUri={"http://localhost:4000/api/auth/google-workspace"}
         />
         <FixedBottomButton onClick={openModal}>로그인</FixedBottomButton>
+        <FixedCenterModal
+            isOpen={isOpen}
+            onClick={closeModal}
+            modalStyle={{ border: "1px solid #bcbcbc",padding: "0px 10px 10px"}} >
+            <LoginForm onClose={closeModal}/>
+        </FixedCenterModal>
         </ButtonList>
+
 }
 export default LoginPage;

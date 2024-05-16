@@ -1,5 +1,5 @@
 
-import { ButtonHTMLAttributes, Ref, forwardRef, useId } from 'react';
+import { ButtonHTMLAttributes, Ref, forwardRef } from 'react';
 import {css} from "@emotion/react";
 
 
@@ -8,12 +8,11 @@ interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 const Button = forwardRef(function Button(props: Props, forwardedRef: Ref<HTMLButtonElement>) {
   const { fullWidth = true, children, ...rest } = props;
-  const buttonId = useId();
 
   return (
     <button
       ref={forwardedRef}
-      id={buttonId}
+
       css={css`
         display: inline-flex;
         align-items: center;

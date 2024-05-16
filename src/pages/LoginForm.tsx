@@ -4,7 +4,8 @@ import { http } from '../utils/http';
 import axios from "axios";
 import {useInternalRouter} from "../hooks/useInternalRouter";
 import Button from "../components/Button";
-interface Props{
+
+interface LoginFormProps{
     onClose : ()=>void
 }
 
@@ -38,7 +39,7 @@ export interface AuthResponse {
     accessToken: string;
     // 다른 프로퍼티들도 정의할 수 있음
 }
-function LoginForm(props: Props){
+function LoginForm(props: LoginFormProps){
     const router = useInternalRouter();
 
     async function Login(requestBody: LoginRequestBody) {
