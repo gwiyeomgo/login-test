@@ -4,6 +4,7 @@ import { http } from '../utils/http';
 import axios from "axios";
 import {useInternalRouter} from "../hooks/useInternalRouter";
 import Button from "../components/Button";
+import {getAuth} from "./remotes";
 
 interface LoginFormProps{
     onClose : ()=>void
@@ -43,17 +44,17 @@ function LoginForm(props: LoginFormProps){
     const router = useInternalRouter();
 
     async function Login(requestBody: LoginRequestBody) {
-        const authResponse = await http.post<AuthResponse>('/auth', requestBody);
+        const authResponse = await getAuth(requestBody);
         const {accessToken} = authResponse
         axios.defaults.headers['Authorization'] = `Bearer ${accessToken}`;
         //토큰으로 회원 조회
-        const memberResponse = await http.get("/my");
-            console.log(memberResponse)
+        const memberResponse = await http.get("api/my");
+        console.log(memberResponse)
         router.push('/boards')
     }
 
     function logout() {
-        return http.post(  "/auth/logout").then(() => {
+        return http.post(  "api/auth/logout").then(() => {
             delete axios.defaults.headers['Authorization'];
         });
     }
@@ -69,12 +70,13 @@ function LoginForm(props: LoginFormProps){
         const authResponse = await axios.post("/auth/token/refresh")
         const {accessToken} = authResponse.data;
         axios.defaults.headers['Authorization'] = `Bearer ${accessToken}`;
-        const memberResponse = await http.get("/my");
+        const memberResponse = await http.get("api/my");
         console.log(memberResponse)
       //  MemberContext.memberInformation = memberResponse.data;
     }
 
     const onFinish = (e: FormEvent<HTMLFormElement>) => {
+
         e.preventDefault(); // Prevent default form submission behavior
         const formData = new FormData(e.currentTarget); // Get form data
         const id = formData.get('id') as string; // Get id from form data
@@ -83,6 +85,8 @@ function LoginForm(props: LoginFormProps){
         Login({id,password}).then(()=>{
             console.log(id, password); // Log username and password
             props.onClose()
+        }).catch((err)=>{
+            console.log(err.message)
         })
 
     }

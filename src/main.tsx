@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client'
 import { BrowserRouter  } from 'react-router-dom';
-
+import './index.css';
 import App from './App';
 import { serviceWorker } from './server/browser';
 
-import './index.css';
+
 //https://seungahhong.github.io/blog/2022/07/2022-07-25-msw/
 //요청 핸들러에 추가되지 않는 요청을 처리하는 방법
 serviceWorker.start({ onUnhandledRequest: 'bypass' });
@@ -25,3 +25,4 @@ if (rootEl) {
 } else {
     throw 'Root element not found. Unable to render the App.';
 }
+

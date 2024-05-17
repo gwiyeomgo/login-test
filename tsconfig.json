@@ -19,6 +19,6 @@
   },
   "include": ["./src"],
   "exclude": [ //컴파일러가 특정 디렉토리나 파일을 제외하도록 지정
-    "node_modules"
+    "node_modules","dist"
   ]
 }
