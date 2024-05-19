@@ -63,6 +63,8 @@ function BoardPage() {
     const [list, setList] = useState<Item[]>([]);
     useEffect(()=>{
         getList().then((item)=>{
+            console.log(item)
+            debugger
             return setList(item);
         }).catch((error)=>{
             console.log(error)
@@ -70,7 +72,8 @@ function BoardPage() {
     },[])
 
     return ( <List>
-        {list.map((item)=>{
+        {list.length >0 && list.map((item)=>{
+            console.log(item)
             return <List.Row
                 left={<div >{`${item.id}, ${item.content}`}</div>}
                 right={<div >{item.memberInfo.name}</div>}/>

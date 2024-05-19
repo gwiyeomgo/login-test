@@ -1,4 +1,4 @@
-import { rest } from 'msw';
+import { http, HttpResponse } from 'msw'
 import { originList} from './__mocks__/list';
 
 
@@ -21,20 +21,37 @@ class APIError extends Error {
  */
 
 export const  handlers= [
-    rest.get('api/list', (req, res, ctx) => {
-        return res(
-            ctx.delay(500),
-            ctx.status(200),
-            ctx.json(list));
+    http.get('api/list',({ request, params }) => {
+            return HttpResponse.json(
+                list,
+                {
+                    status: 200,
+                    statusText: 'Mocked status',
+                },
+            )
+        }
+        ),
+    http.post('api/auth', ({ request, params }) => {
+        return HttpResponse.json(
+            {
+                accessToken: "testes"
+            },
+            {
+                status: 200,
+                statusText: 'Mocked status',
+            },
+        )
     }),
-    rest.post('api/auth', (req, res, ctx) => {
-        return res(ctx.delay(500),ctx.status(200), ctx.json({
-            accessToken: "testes"
-        }));
-
-    }),
-    rest.get('api/my',  (_, res, ctx) => {
-        return res(ctx.delay(300), ctx.status(200), ctx.json(list));
+    http.get('api/my',  ({ request, params }) => {
+        return HttpResponse.json(
+            {
+                permissions: ["test"]
+            },
+            {
+                status: 200,
+                statusText: 'Mocked status',
+            },
+        )
     }),
   ];
 
