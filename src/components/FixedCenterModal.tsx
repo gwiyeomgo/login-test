@@ -45,7 +45,7 @@ const FixedCenterModal = forwardRef(function FixedCenterModal(
 
     return (
         props.isOpen ? <GlobalPortal.Consumer>
-        {/*    <FocusTrap  active={props.isOpen}>*/}
+           <FocusTrap  active={props.isOpen}>
             <div
                 className="modal"
                 style={{
@@ -66,7 +66,7 @@ const FixedCenterModal = forwardRef(function FixedCenterModal(
                     취소
                 </Button>
             </div>
-           {/* </FocusTrap>*/}
+          </FocusTrap>
         </GlobalPortal.Consumer> :<></>
     );
 })
